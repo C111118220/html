@@ -1,0 +1,24 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+webdriver_path = r"C:\Users\user\OneDrive\桌面\python\chromedriver.exe"
+
+# 初始化 WebDriver
+options = Options()
+service = Service(webdriver_path)
+driver = webdriver.Chrome(service=service, options=options)
+
+# 打開 Google 網頁
+driver.get("https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp")
+
+user_canpusInput=driver.find_element(By.ID,"cmp_area_id")
+user_nameInput=driver.find_element(By.ID,"dgr_id")
+user_canpusInput.send_keys("國立高雄科技大學(第一校區)")
+user_nameInput.send_keys("日間部四技")
+time.sleep(10)
