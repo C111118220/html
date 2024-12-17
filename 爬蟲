@@ -1,24 +1,97 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service 
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
+import pandas as pd
 import time
 
-webdriver_path = r"C:\Users\user\OneDrive\桌面\python\chromedriver.exe"
+# 設定 ChromeDriver 路徑
+webdriver_path = r"C:\Users\user\Desktop\新增資料夾\chromedriver-win64\chromedriver.exe"
 
 # 初始化 WebDriver
-options = Options()
 service = Service(webdriver_path)
+options = webdriver.ChromeOptions()
+options.add_argument("--start-maximized")
 driver = webdriver.Chrome(service=service, options=options)
 
-# 打開 Google 網頁
-driver.get("https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp")
+try:
+    # 打開目標網站
+    driver.get("https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp")
+    print("成功打開目標網站")
 
-user_canpusInput=driver.find_element(By.ID,"cmp_area_id")
-user_nameInput=driver.find_element(By.ID,"dgr_id")
-user_canpusInput.send_keys("國立高雄科技大學(第一校區)")
-user_nameInput.send_keys("日間部四技")
-time.sleep(10)
+    wait = WebDriverWait(driver, 10)
+
+    # 選擇學年學期 (例如：113學年度第1學期)
+    semester_select = wait.until(EC.presence_of_element_located((By.ID, "yms_yms")))
+    Select(semester_select).select_by_visible_text("113學年度第1學期")
+    print("已選擇學年學期：113學年度第1學期")
+
+    # 選擇校區 (第一校區)
+    campus_select = driver.find_element(By.ID, "cmp_area_id")
+    Select(campus_select).select_by_visible_text("國立高雄科技大學(第一校區)")
+    print("已選擇校區：國立高雄科技大學(第一校區)")
+
+    time.sleep(1)  # 等待選單刷新
+
+    # 選擇學制 (日間部四技)
+    degree_select = driver.find_element(By.ID, "dgr_id")
+    Select(degree_select).select_by_visible_text("日間部四技")
+    print("已選擇學制：日間部四技")
+
+    # 選擇科系 (資訊管理系)
+    department_select = driver.find_element(By.ID, "unt_id")
+    Select(department_select).select_by_visible_text("(管理學院)資訊管理系")
+    print("已選擇科系：資訊管理系")
+
+    # 選擇年級 (3年級)
+    year_select = driver.find_element(By.ID, "clyear")
+    Select(year_select).select_by_visible_text("3年級")
+    print("已選擇年級：3年級")
+
+    # 選擇星期 (星期一)
+    week_select = driver.find_element(By.ID, "week")
+    Select(week_select).select_by_visible_text("星期一")
+    print("已選擇星期：星期一")
+
+    # 點擊「條件查詢」按鈕
+    search_button = driver.find_element(By.XPATH, "//input[@value='條件查詢']")
+    search_button.click()
+    print("已進行條件查詢，正在獲取資料...")
+
+    # 等待查詢結果載入
+    wait.until(EC.presence_of_element_located((By.XPATH, "//table[@class='stable']")))
+
+    # 解析查詢結果
+    rows = driver.find_elements(By.XPATH, "//table[@class='stable']//tr")[3:]  # 從第4行開始是課程資料
+    data = []
+    for row in rows:
+        cols = row.find_elements(By.TAG_NAME, "td")
+        if cols:
+            data.append([col.text.strip() for col in cols])
+
+    # 將資料轉為 DataFrame
+    columns = [
+        "選課代號", "上課校區", "部別", "科系", "班級", "合班班級", "永久課號",
+        "科目名稱", "學分", "授課時數", "實習時數", "必/選", "授課教師", "教室",
+        "修課人數", "人數上限", "上課時間", "全英語授課", "遠距教學", "授課大綱", "備註"
+    ]
+    df = pd.DataFrame(data, columns=columns)
+
+    # 輸出查詢結果
+    print("\n查詢結果：")
+    print(df)
+
+    # 存成 Excel 檔案
+    df.to_excel("nkust_course_schedule.xlsx", index=False)
+    print("資料已儲存為 'nkust_course_schedule.xlsx'")
+
+except Exception as e:
+    print("發生錯誤:", e)
+
+finally:
+    # 關閉瀏覽器
+    input("按 Enter 鍵關閉瀏覽器...")
+    driver.quit()
+    print("瀏覽器已關閉")
