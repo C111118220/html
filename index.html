@@ -105,6 +105,14 @@
                 selectedMap.style.display = "block";
             }
         }
+
+        function displayImageInMap(src) {
+            const displayArea = document.getElementById("custom-map-display");
+            if (displayArea) {
+                displayArea.innerHTML = `<img src="${src}" alt="校區交通">`;
+                displayArea.style.display = "block";
+            }
+        }
     </script>
 </head>
 <body>
@@ -116,7 +124,7 @@
         <h2 class="section-title">校區地圖</h2>
         <div class="button-container">
             <div class="button-card" onclick="toggleMap('map-jg')">
-                <img src="jg_map.png" alt="建工校區">
+                <img src="768090224.jpg" alt="建工校區">
                 <p>建工校區</p>
             </div>
             <div class="button-card" onclick="toggleMap('map-yc')">
@@ -132,15 +140,15 @@
                 <p>旗津校區</p>
             </div>
             <div class="button-card" onclick="toggleMap('map-dk')">
-                <img src="dk_map.jpg" alt="第一科技校區">
-                <p>第一科技校區</p>
+                <img src="dk_map.jpg" alt="第一校區">
+                <p>第一校區</p>
             </div>
         </div>
 
         <!-- 地圖顯示區域 -->
         <div id="map-jg" class="map-container">
             <h2>建工校區地圖</h2>
-            <img src="jg_map.png" alt="建工校區地圖">
+            <img src="768090224.jpg" alt="建工校區地圖">
         </div>
         <div id="map-yc" class="map-container">
             <h2>燕巢校區地圖</h2>
@@ -158,12 +166,17 @@
             <h2>第一校區地圖</h2>
             <img src="dk_map.jpg" alt="第一科技校區地圖">
         </div>
+        <div id="custom-map-display" class="map-container"></div>
     </div>
 
     <!-- 其他功能區 -->
     <div class="section-container">
         <h2 class="section-title">其他功能</h2>
         <div class="button-container">
+            <a href="#" onclick="displayImageInMap('313070045.jpg')" class="button-card">
+                <img src="313070045.jpg" alt="校區交通">
+                <p>校區交通</p>
+            </a>
             <a href="https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp" target="_blank" class="button-card">
                 <img src="pngtree-online-course-class-school-webinar-png-image_6381112.png" alt="課程內容">
                 <p>課程內容</p>
@@ -175,6 +188,7 @@
             <a href="manual.html" class="button-card">
                 <img src="istockphoto-588976360-612x612.jpg" alt="使用手冊">
                 <p>使用手冊</p>
+
             </a>
         </div>
     </div>
@@ -196,4 +210,4 @@
         })();
     </script>
 </body>
-</html>
+</html> 
