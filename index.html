@@ -96,22 +96,36 @@
             }
         }
     </style>
+    </style>
     <script>
-        function toggleMap(id) {
-            const allMaps = document.querySelectorAll(".map-container");
-            allMaps.forEach(map => map.style.display = "none");
-            const selectedMap = document.getElementById(id);
+        function toggleMap(mapId) {
+            // 隱藏所有地圖容器
+            const mapContainers = document.querySelectorAll('.map-container');
+            mapContainers.forEach(container => container.style.display = 'none');
+
+            // 顯示選中的地圖容器
+            const selectedMap = document.getElementById(mapId);
             if (selectedMap) {
-                selectedMap.style.display = "block";
+                selectedMap.style.display = 'block';
             }
         }
 
-        function displayImageInMap(src) {
-            const displayArea = document.getElementById("custom-map-display");
-            if (displayArea) {
-                displayArea.innerHTML = `<img src="${src}" alt="校區交通">`;
-                displayArea.style.display = "block";
-            }
+        function displayImageInMap(imageSrc) {
+            // 隱藏所有地圖容器
+            const mapContainers = document.querySelectorAll('.map-container');
+            mapContainers.forEach(container => container.style.display = 'none');
+
+            // 顯示校區交通地圖容器
+            const customMapDisplay = document.getElementById('custom-map-display');
+            customMapDisplay.style.display = 'block';
+
+            // 替換圖片
+            customMapDisplay.innerHTML = `
+                <h2>校區交通</h2>
+                <img src="${imageSrc}" alt="校區交通">
+            `;
+             
+            event.preventDefault();
         }
     </script>
 </head>
@@ -175,9 +189,6 @@
             <img src="fs_2.jpg" alt="教室代碼">
             <img src="fs_3.jpg" alt="教室代碼">
         </div>
-        <div id="custom-map-display" class="map-container">
-            <h2>校區交通</h2>
-            <img src="校區交通.jpg" alt="校區交通">
         <div id="custom-map-display" class="map-container"></div>
     </div>
 
