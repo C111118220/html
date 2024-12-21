@@ -1,24 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>教室位子</title>
+    <title>教室位置</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f8fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .map {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid #007BFF;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-link a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <h1>教室位子</h1>
-    <nav>
-        <a href="index.html">回首頁</a>
-    </nav>
-    <p>以下為教室位置的 Google 地圖：</p>
-    <!-- 嵌入 Google 地圖 -->
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.7690311961647!2d120.30143581504952!3d22.627278885136485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e041fcfbb1fd9%3A0x9e6825fbcbbd9626!2z5ZyL56uL5pS_5biC6Z2S6KGXN-S4iuWKoOWkp-WNlOWHuuWKnyA!5e0!3m2!1szh-TW!2stw!4v1637571168504!5m2!1szh-TW!2stw" 
-        width="600" 
-        height="450" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy">
-    </iframe>
+    <header>
+        <h1>教室位置</h1>
+    </header>
+
+    <div class="container">
+        <p>以下為教室位置的 Google 地圖：</p>
+        <div class="map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.249903824434!2d120.30974951519457!3d22.627278885139734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e04f26e7e8d9f%3A0x1d5c6d50477b3045!2z5Y-w5Lit5ZCM5rC45L2N6Yar6Zmi5a-255Sz5b635Lit!5e0!3m2!1szh-TW!2stw!4v1700909982393!5m2!1szh-TW!2stw"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">回首頁</a>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 校園地圖系統 - 所有權利保留
+    </footer>
 </body>
 </html>
