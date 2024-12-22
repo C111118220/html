@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>楠梓校區地圖與圖片展示</title>
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <title>楠梓校區圖片展示</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,14 +27,7 @@
             min-width: 300px;
         }
 
-        #map {
-            width: 100%;
-            height: 400px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-container img {
+        .map-container img, .image-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
@@ -59,15 +50,15 @@
     </style>
 </head>
 <body>
-    <h1 class="title">楠梓校區地圖與圖片展示</h1>
+    <h1 class="title">楠梓校區圖片展示</h1>
 
     <div class="container">
-        <!-- Google 地圖 -->
+        <!-- 左手邊圖片 -->
         <div class="map-container">
-            <div id="map"></div>
+            <img src="https://c111118220.github.io/html/dk_map.jpg" alt="校區地圖">
         </div>
 
-        <!-- 校區圖片 -->
+        <!-- 右手邊圖片 -->
         <div class="image-container">
             <img src="https://c111118220.github.io/html/fs_1.jpg" alt="楠梓校區">
         </div>
@@ -76,28 +67,9 @@
     <footer>
         © 2024 校園地圖系統 - 所有權利保留
     </footer>
-
-    <script>
-        function initMap() {
-            // 地圖中心點 (楠梓校區座標)
-            const center = { lat: 22.733625, lng: 120.327918 };
-
-            // 初始化地圖
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 15,
-                center: center,
-            });
-
-            // 添加標記
-            const marker = new google.maps.Marker({
-                position: center,
-                map: map,
-                title: "楠梓校區",
-            });
-        }
-    </script>
 </body>
 </html>
+
 
 
 
