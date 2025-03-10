@@ -3,16 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>使用手冊</title>
+    <title>📖 校區與教室資訊系統 - 使用者操作手冊</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 16px;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .download-link:hover {
+            background-color: #219150;
+        }
+    </style>
 </head>
 <body>
-    <h1>使用手冊</h1>
+
+    <h1>📖 校區與教室資訊系統 - 使用者操作手冊</h1>
+
     <nav>
         <a href="index.html">回首頁</a>
     </nav>
-    <p>點擊以下連結下載使用手冊：</p>
-    <a href="manual.pdf" download style="color: blue; text-decoration: underline;">
-        下載使用手冊
-    </a>
+
+    <section>
+        <h2>1. 系統簡介</h2>
+        <p>歡迎使用「校區與教室資訊系統」！<br>
+        本系統旨在提供即時的教室資訊查詢服務，讓師生快速獲取課程資訊與教室使用狀態，並整合互動式小幫手功能，提升使用體驗。</p>
+    </section>
+
+    <section>
+        <h2>2. 功能導覽</h2>
+        <table>
+            <tr>
+                <th>功能名稱</th>
+                <th>說明</th>
+            </tr>
+            <tr>
+                <td>教室 QR 碼查詢</td>
+                <td>掃描教室外的 QR 碼，查詢即時課程資訊</td>
+            </tr>
+            <tr>
+                <td>小幫手互動查詢</td>
+                <td>輸入問題，由小幫手即時回覆教室或課程相關資訊</td>
+            </tr>
+            <tr>
+                <td>校區快速導覽</td>
+                <td>瀏覽不同校區教室資訊，快速切換不同區域</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>3. 操作流程</h2>
+
+        <h3>3.1. 教室 QR 碼查詢</h3>
+        <ol>
+            <li>掃描 QR 碼
+                <ul>
+                    <li>於教室門口找到張貼的 QR 碼</li>
+                    <li>使用手機掃描，進入該教室資訊頁面</li>
+                </ul>
+            </li>
+            <li>查看教室資訊
+                <ul>
+                    <li>課程名稱</li>
+                    <li>授課老師</li>
+                    <li>上課時間</li>
+                </ul>
+            </li>
+            <li>返回主畫面
+                <ul>
+                    <li>點擊「返回主畫面」按鈕回到主功能頁</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>3.2. 使用小幫手查詢</h3>
+        <ol>
+            <li>啟動小幫手功能
+                <ul>
+                    <li>在主畫面點擊「小幫手」按鈕，進入互動介面</li>
+                </ul>
+            </li>
+            <li>輸入查詢問題
+                <ul>
+                    <li>輸入課程或教室相關問題（例：「C218 現在有課嗎？」）</li>
+                    <li>輸入內容需超過 3 字元</li>
+                </ul>
+            </li>
+            <li>發送查詢
+                <ul>
+                    <li>點擊「查詢」按鈕，小幫手將回覆資訊</li>
+                </ul>
+            </li>
+            <li>清除查詢
+                <ul>
+                    <li>點擊「清除」按鈕，清空文字輸入框</li>
+                </ul>
+            </li>
+            <li>查看查詢記錄
+                <ul>
+                    <li>查詢歷史問題與回覆，方便重複參考</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>3.3. 校區快速導覽</h3>
+        <ol>
+            <li>選擇校區
+                <ul>
+                    <li>點擊主畫面上的校區按鈕（如「楠梓校區」、「第一校區」）</li>
+                </ul>
+            </li>
+            <li>查看資訊
+                <ul>
+                    <li>顯示該校區內所有教室資訊</li>
+                </ul>
+            </li>
+            <li>切換功能
+                <ul>
+                    <li>點選不同功能按鈕，進行其他查詢或操作</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>4. 系統介面簡介</h2>
+        <table>
+            <tr>
+                <th>頁面</th>
+                <th>功能簡述</th>
+            </tr>
+            <tr>
+                <td>主功能頁</td>
+                <td>校區快速導覽、教室查詢、小幫手互動入口</td>
+            </tr>
+            <tr>
+                <td>教室資訊頁</td>
+                <td>顯示該教室目前課程與授課教師資訊</td>
+            </tr>
+            <tr>
+                <td>小幫手互動頁</td>
+                <td>輸入問題並查詢課程、教室資訊；顯示查詢記錄、提供聯絡選項等</td>
+            </tr>
+            <tr>
+                <td>後端知識庫頁</td>
+                <td>由系統管理員維護，無需使用者操作</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>5. 常見問題 FAQ</h2>
+        <p><strong>Q1：</strong> 掃描 QR 碼後沒有顯示資訊？</p>
+        <ul>
+            <li>請確認掃描的 QR 碼完整、清晰</li>
+            <li>若依然無法查詢，請聯繫系統管理員</li>
+        </ul>
+        <p><strong>Q2：</strong> 輸入問題後小幫手沒回應？</p>
+        <ul>
+            <li>請檢查網路連線是否正常</li>
+            <li>請確認輸入問題字數超過 3 個字</li>
+            <li>重試或聯繫管理員</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>6. 聯絡資訊</h2>
+        <ul>
+            <li>系統管理員：XXX</li>
+            <li>聯絡信箱：xxx@example.com</li>
+            <li>支援時間：週一至週五 09:00-17:00</li>
+        </ul>
+    </section>
+
+    <a class="download-link" href="manual.pdf" download>📥 下載 PDF 版使用手冊</a>
+
 </body>
 </html>
