@@ -59,8 +59,8 @@
         }
         .button-card img {
             width: 100%;
-            height: 180px; /* 設定統一的高度 */
-            object-fit: cover; /* 確保圖片比例適配 */
+            height: 180px;
+            object-fit: cover;
             border-radius: 8px;
             margin-bottom: 10px;
         }
@@ -75,114 +75,168 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        a {
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #0056b3;
-        }
         footer {
             margin-top: 40px;
             padding: 10px;
             background: rgba(255, 255, 255, 0.1);
             font-size: 14px;
         }
+        /* ========== 手機版選單相關 ========== */
+        .mobile-menu-icon {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            color: #fff;
+            z-index: 999;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: #4b0082;
+            color: #fff;
+            padding: 20px;
+            z-index: 998;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        .mobile-menu li {
+            margin: 15px 0;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .mobile-menu a:hover {
+            text-decoration: underline;
+        }
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .sub-menu {
+            display: none;
+            padding-left: 20px;
+        }
+        .sub-menu li {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        /* ========== 響應式控制 ========== */
         @media (max-width: 768px) {
             .button-card {
                 width: 100%;
                 max-width: 300px;
             }
+            .mobile-menu-icon {
+                display: block;
+            }
         }
-             @media (max-width: 768px) {
-    body {
-        font-size: 12px; /* 手機字體再放大一點 */
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    .button-card img {
-        height: 120px; /* 手機圖片縮小 */
-    }
-}
+        @media (min-width: 769px) {
+            .mobile-menu-icon {
+                display: none !important;
+            }
+            .mobile-menu {
+                display: none !important;
+            }
+        }
     </style>
-  <script>
-    function toggleMap(mapId) {
-        const selectedMap = document.getElementById(mapId);
-
-        // 切換顯示/隱藏
-        if (selectedMap.style.display === 'block') {
-            selectedMap.style.display = 'none'; // 隱藏
-        } else {
-            const mapContainers = document.querySelectorAll('.map-container');
-            mapContainers.forEach(container => container.style.display = 'none');
-            selectedMap.style.display = 'block'; // 顯示
+    <script>
+        function toggleMap(mapId) {
+            const selectedMap = document.getElementById(mapId);
+            if (selectedMap.style.display === 'block') {
+                selectedMap.style.display = 'none';
+            } else {
+                const mapContainers = document.querySelectorAll('.map-container');
+                mapContainers.forEach(container => container.style.display = 'none');
+                selectedMap.style.display = 'block';
+            }
         }
-    }
 
-    function displayImageInMap(event, imageSrc) {
-        event.preventDefault(); // 阻止頁面跳轉
-
-        const customMapDisplay = document.getElementById('custom-map-display');
-
-        // 切換顯示/隱藏
-        if (customMapDisplay.style.display === 'block') {
-            customMapDisplay.style.display = 'none'; // 隱藏
-        } else {
-            const mapContainers = document.querySelectorAll('.map-container');
-            mapContainers.forEach(container => container.style.display = 'none');
-            customMapDisplay.innerHTML = '';
-
-            // 顯示圖片並設置內容
-            customMapDisplay.style.display = 'block';
-            customMapDisplay.innerHTML = `
-                <h2>校區交通</h2>
+        function displayImageInMap(event, imageSrc) {
+            event.preventDefault();
+            const customMapDisplay = document.getElementById('custom-map-display');
+            if (customMapDisplay.style.display === 'block') {
+                customMapDisplay.style.display = 'none';
+            } else {
+                const mapContainers = document.querySelectorAll('.map-container');
+                mapContainers.forEach(container => container.style.display = 'none');
+                customMapDisplay.innerHTML = '';
+                customMapDisplay.style.display = 'block';
+                customMapDisplay.innerHTML = `
+                    <h2>校區交通</h2>
                     <img src="${imageSrc}" alt="校區交通">
-                    <div class="description" style="text-align: left; line-height: 1.8;">
-                        <p class="little_wider" style="text-align: left;">
-                            建工校區交通方式：<br />
-                            各線公車：16、217、33、37、53、8008、8009、8021、8041、8049、81、紅30A、紅30B(寒暑假停駛)、黃1線<br />
-                            搭火車：由高雄火車站直接轉公車紅30至高雄科大(建工)。<br />
-                            搭高鐵：由左營高鐵站直接轉公車16A至高雄科大(建工)。<br />
-                            搭捷運：由後驛站直接轉公車紅30至高雄科大(建工)。<br />
-                            <br />
-                            燕巢校區交通方式：<br />
-                            各線公車：7A、7C、E04A、E09延、E10B<br />
-                            搭火車：由高雄車站轉 8023公車，高雄科大(燕巢)下車。/由楠梓火車站轉7A公車，高雄科大(燕巢)下車。<br />
-                            搭高鐵：高鐵左營站搭E04A直達燕巢校區。<br />
-                            搭捷運：由都會公園站轉7A或7C公車，高雄科大(燕巢)下車。<br />
-                            <br />
-                            第一校區交通方式：<br />
-                            各線公車：紅58A(鄰近學生宿舍)；紅58B、97路公車與7C公車(東、西校門口)<br />
-                            搭火車：由楠梓火車站直接轉公車97高雄學園專車或紅58市公車至高雄科大(第一)。<br />
-                            搭高鐵：由左營高鐵站搭捷運至R21都會公園站或R22青埔站再轉公車。<br />
-                            搭捷運：由都會公園站直接轉公車紅58A、紅58B與7C公車至高雄科大(第一)。/由青埔站直接轉公車7C公車至高雄科大(第一)。<br />
-                            <br />
-                            楠梓校區交通方式：<br />
-                            各線公車：6號公車、29號公車、市公車28、市公車301、7C公車<br />
-                            搭火車：由楠梓火車站直接轉6號公車或29號公車至高雄科大(楠梓)。/由高雄火車站直接轉28公車或301號公車至後勁國中。<br />
-                            搭高鐵：由左營高鐵站搭捷運至後勁站下車，步行100公尺即可到達本校。<br />
-                            搭捷運：搭乘高雄捷運於後勁站下車，步行100公尺即可到達本校。<br />
-                            <br />
-                            旗津校區交通方式：<br />
-                            各線公車：高雄科大(旗津)：紅9號、248號公車(到鼓山渡輪站)<br />
-                            搭火車：由高雄火車站轉1號公車、248路公車至鼓山渡輪站搭渡輪到旗津，下渡輪後轉市公車紅9號於旗津國小下車；或沿中洲三路步行約10分鐘可抵高雄科大(旗津)。<br />
-                            搭高鐵：由左營高鐵站搭捷運至西子灣站1號出口步行約450公尺至鼓山渡輪站搭渡輪到旗津，下渡輪後轉市公車紅9號於旗津國小下車；或沿中洲三路步行約10分鐘可抵高雄科大(旗津)。<br />
-                            搭捷運：捷運西子灣站1號出口步行約450公尺至鼓山渡輪站搭渡輪到旗津，下渡輪後轉市公車紅9號於旗津國小下車；或沿中洲三路步行約10分鐘可抵高雄科大(旗津)。
-                        </p>
-                    </div>
                 `;
-                }}
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        }
+
+        function toggleSubMenu(menuId) {
+            const subMenu = document.getElementById(menuId);
+            if (subMenu.style.display === 'block') {
+                subMenu.style.display = 'none';
+            } else {
+                subMenu.style.display = 'block';
+            }
+        }
     </script>
 </head>
 <body>
+
+    <!-- 手機版漢堡按鈕 -->
+    <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+
+    <!-- 手機版側邊選單 -->
+    <nav id="mobile-menu" class="mobile-menu">
+        <ul>
+            <li onclick="toggleSubMenu('campus-menu')">📍 校區地圖</li>
+            <ul id="campus-menu" class="sub-menu">
+                <li><a href="#" onclick="toggleMap('map-jg')">建工校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-yc')">燕巢校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-nz')">楠梓校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-qj')">旗津校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-dk')">第一校區</a></li>
+            </ul>
+            <li onclick="toggleSubMenu('feature-menu')">🔧 其他功能</li>
+            <ul id="feature-menu" class="sub-menu">
+                <li><a href="#" onclick="displayImageInMap(event, '校區交通.jpg')">校區交通</a></li>
+                <li><a href="https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp" target="_blank">課程內容</a></li>
+                <li><a href="classroom.html">教室位子</a></li>
+                <li><a href="manual.html">使用手冊</a></li>
+            </ul>
+        </ul>
+        <div class="close-btn" onclick="toggleMobileMenu()">✕</div>
+    </nav>
+
     <h1>國立高雄科技大學 - 校區與資訊系統</h1>
     <p>請選擇以下功能</p>
 
-    <!-- 校區地圖區 -->
+    <!-- 校區地圖 -->
     <div class="section-container">
         <h2 class="section-title">校區地圖</h2>
         <div class="button-container">
@@ -208,75 +262,43 @@
             </div>
         </div>
 
-        <!-- 地圖顯示區域 -->
-        <div id="map-jg" class="map-container">
-            <h2>建工校區地圖</h2>
-            <img src="jk_map.jpg" alt="建工校區地圖">
-            <img src="jk_1.jpg" alt="教室代碼">
-            <img src="jk_2.jpg" alt="教室代碼">
-        </div>
-        <div id="map-yc" class="map-container">
-            <h2>燕巢校區地圖</h2>
-            <img src="yc_map.png" alt="燕巢校區地圖">
-            <img src="yz_1.jpg" alt="教室代碼">
-        </div>
-        <div id="map-nz" class="map-container">
-            <h2>楠梓校區地圖</h2>
-            <img src="nz_map.jpg" alt="楠梓校區地圖">
-            <img src="nz_1.jpg" alt="教室代碼">
-            <img src="nz_2.jpg" alt="教室代碼">
-        </div>
-        <div id="map-qj" class="map-container">
-            <h2>旗津校區地圖</h2>
-            <img src="qj_map.jpg" alt="旗津校區地圖">
-            <img src="cj_1.jpg" alt="教室代碼">
-        </div>
-        <div id="map-dk" class="map-container">
-            <h2>第一校區地圖</h2>
-            <img src="fs_map.jpg" alt="第一校區地圖">     
-            <img src="fs_2.jpg" alt="教室代碼">
-            <img src="fs_3.jpg" alt="教室代碼">
-        </div>
+        <!-- 地圖顯示區 -->
+        <div id="map-jg" class="map-container"></div>
+        <div id="map-yc" class="map-container"></div>
+        <div id="map-nz" class="map-container"></div>
+        <div id="map-qj" class="map-container"></div>
+        <div id="map-dk" class="map-container"></div>
         <div id="custom-map-display" class="map-container"></div>
     </div>
 
-    <!-- 其他功能區 -->
-  <!-- 其他功能區 -->
-<div class="section-container">
-    <h2 class="section-title">其他功能</h2>
-    <div class="button-container">
-        <!-- 校區交通 -->
-        <div onclick="displayImageInMap(event, '校區交通.jpg')" class="button-card">
-            <img src="校區交通.jpg" alt="校區交通">
-            <p>校區交通</p>
-        </div>
-
-        <!-- 課程內容 -->
-        <div onclick="window.open('https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp', '_blank')" class="button-card">
-            <img src="課程內容圖.png" alt="課程內容">
-            <p>課程內容</p>
-        </div>
-
-        <!-- 教室位子 -->
-        <div onclick="window.location.href='classroom.html'" class="button-card">
-            <img src="教室位子圖.png" alt="教室位子">
-            <p>教室位子</p>
-        </div>
-
-        <!-- 使用手冊 -->
-        <div onclick="window.location.href='manual.html'" class="button-card">
-            <img src="使用手冊圖.jpg" alt="使用手冊">
-            <p>使用手冊</p>
+    <!-- 其他功能 -->
+    <div class="section-container">
+        <h2 class="section-title">其他功能</h2>
+        <div class="button-container">
+            <div class="button-card" onclick="displayImageInMap(event, '校區交通.jpg')">
+                <img src="校區交通.jpg" alt="校區交通">
+                <p>校區交通</p>
+            </div>
+            <div class="button-card" onclick="window.open('https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp', '_blank')">
+                <img src="課程內容圖.png" alt="課程內容">
+                <p>課程內容</p>
+            </div>
+            <div class="button-card" onclick="window.location.href='classroom.html'">
+                <img src="教室位子圖.png" alt="教室位子">
+                <p>教室位子</p>
+            </div>
+            <div class="button-card" onclick="window.location.href='manual.html'">
+                <img src="使用手冊圖.jpg" alt="使用手冊">
+                <p>使用手冊</p>
+            </div>
         </div>
     </div>
-</div>
-
 
     <footer>
         © 2024 國立高雄科技大學 | 提供最即時的校園資訊服務
     </footer>
 
-    <!-- Tawk.to Script -->
+    <!-- Tawk.to -->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
@@ -289,4 +311,4 @@
         })();
     </script>
 </body>
-</html> 
+</html>
