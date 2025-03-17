@@ -9,19 +9,22 @@
     <style>
         /* 手機版標題、文字大小調整 */
         @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
             h1 {
-                font-size: 20px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                position: relative;
+                font-size: 18px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                line-height: 1.3;
                 z-index: 1;
+                position: relative;
             }
 
             p {
-                font-size: 14px;
+                font-size: 13px;
                 margin: 5px 0;
-                z-index: 1;
-                position: relative;
             }
 
             .section-title {
@@ -36,10 +39,6 @@
             .section-container {
                 padding: 8px;
                 margin: 20px auto;
-            }
-
-            .overlay {
-                display: block;
             }
         }
 
@@ -56,15 +55,11 @@
         h1 {
             margin-top: 20px;
             font-size: 36px;
-            z-index: 1;
-            position: relative;
         }
 
         p {
             font-size: 18px;
             margin: 10px 0;
-            z-index: 1;
-            position: relative;
         }
 
         .section-container {
@@ -75,8 +70,6 @@
             width: 90%;
             max-width: 1200px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
         }
 
         .section-title {
@@ -135,8 +128,6 @@
             padding: 10px;
             background: rgba(255, 255, 255, 0.1);
             font-size: 14px;
-            z-index: 1;
-            position: relative;
         }
 
         /* 手機版選單相關 */
@@ -147,7 +138,7 @@
             left: 20px;
             font-size: 28px;
             color: #fff;
-            z-index: 1001;
+            z-index: 999;
             cursor: pointer;
         }
 
@@ -155,21 +146,16 @@
             display: none;
             position: fixed;
             top: 0;
-            left: -300px; /* 從畫面左側滑出 */
+            left: 0;
             width: 80%;
             max-width: 300px;
             height: 100%;
             background-color: #4b0082;
             color: #fff;
             padding: 20px;
-            z-index: 1002;
+            z-index: 998;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
             overflow-y: auto;
-            transition: left 0.3s ease;
-        }
-
-        .mobile-menu.show {
-            left: 0; /* 滑出 */
         }
 
         .mobile-menu ul {
@@ -210,17 +196,6 @@
             margin: 10px 0;
         }
 
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
         /* 響應式控制 */
         @media (max-width: 768px) {
             .button-card {
@@ -242,8 +217,55 @@
                 display: none !important;
             }
         }
-
     </style>
+
+    <script>
+        function toggleMap(mapId) {
+            const selectedMap = document.getElementById(mapId);
+            if (selectedMap.style.display === 'block') {
+                selectedMap.style.display = 'none';
+            } else {
+                const mapContainers = document.querySelectorAll('.map-container');
+                mapContainers.forEach(container => container.style.display = 'none');
+                selectedMap.style.display = 'block';
+            }
+        }
+
+        function displayImageInMap(event, imageSrc) {
+            event.preventDefault();
+            const customMapDisplay = document.getElementById('custom-map-display');
+            if (customMapDisplay.style.display === 'block') {
+                customMapDisplay.style.display = 'none';
+            } else {
+                const mapContainers = document.querySelectorAll('.map-container');
+                mapContainers.forEach(container => container.style.display = 'none');
+                customMapDisplay.innerHTML = '';
+                customMapDisplay.style.display = 'block';
+                customMapDisplay.innerHTML = `
+                    <h2>校區交通</h2>
+                    <img src="${imageSrc}" alt="校區交通">
+                `;
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        }
+
+        function toggleSubMenu(menuId) {
+            const subMenu = document.getElementById(menuId);
+            if (subMenu.style.display === 'block') {
+                subMenu.style.display = 'none';
+            } else {
+                subMenu.style.display = 'block';
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -251,23 +273,20 @@
     <!-- 手機版漢堡按鈕 -->
     <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
 
-    <!-- 背景遮罩 -->
-    <div id="overlay" class="overlay" onclick="toggleMobileMenu()"></div>
-
     <!-- 手機版側邊選單 -->
     <nav id="mobile-menu" class="mobile-menu">
         <ul>
             <li onclick="toggleSubMenu('campus-menu')">📍 校區地圖</li>
             <ul id="campus-menu" class="sub-menu">
-                <li><a href="#" onclick="toggleMap('map-jg'); toggleMobileMenu();">建工校區</a></li>
-                <li><a href="#" onclick="toggleMap('map-yc'); toggleMobileMenu();">燕巢校區</a></li>
-                <li><a href="#" onclick="toggleMap('map-nz'); toggleMobileMenu();">楠梓校區</a></li>
-                <li><a href="#" onclick="toggleMap('map-qj'); toggleMobileMenu();">旗津校區</a></li>
-                <li><a href="#" onclick="toggleMap('map-dk'); toggleMobileMenu();">第一校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-jg')">建工校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-yc')">燕巢校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-nz')">楠梓校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-qj')">旗津校區</a></li>
+                <li><a href="#" onclick="toggleMap('map-dk')">第一校區</a></li>
             </ul>
             <li onclick="toggleSubMenu('feature-menu')">🔧 其他功能</li>
             <ul id="feature-menu" class="sub-menu">
-                <li><a href="#" onclick="displayImageInMap(event, '校區交通.jpg'); toggleMobileMenu();">校區交通</a></li>
+                <li><a href="#" onclick="displayImageInMap(event, '校區交通.jpg')">校區交通</a></li>
                 <li><a href="https://webap.nkust.edu.tw/nkust/ag_pro/ag202.jsp" target="_blank">課程內容</a></li>
                 <li><a href="classroom.html">教室位子</a></li>
                 <li><a href="manual.html">使用手冊</a></li>
@@ -341,43 +360,17 @@
         © 2024 國立高雄科技大學 | 提供最即時的校園資訊服務
     </footer>
 
-    <script>
-        function toggleMap(mapId) {
-            const selectedMap = document.getElementById(mapId);
-            if (selectedMap.style.display === 'block') {
-                selectedMap.style.display = 'none';
-            } else {
-                const mapContainers = document.querySelectorAll('.map-container');
-                mapContainers.forEach(container => container.style.display = 'none');
-                selectedMap.style.display = 'block';
-            }
-        }
-
-        function displayImageInMap(event, imageSrc) {
-            event.preventDefault();
-            const customMapDisplay = document.getElementById('custom-map-display');
-            const mapContainers = document.querySelectorAll('.map-container');
-            mapContainers.forEach(container => container.style.display = 'none');
-            customMapDisplay.innerHTML = `<h2>校區交通</h2><img src="${imageSrc}" alt="校區交通">`;
-            customMapDisplay.style.display = 'block';
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const overlay = document.getElementById('overlay');
-            menu.classList.toggle('show');
-            if (menu.classList.contains('show')) {
-                overlay.style.display = 'block';
-            } else {
-                overlay.style.display = 'none';
-            }
-        }
-
-        function toggleSubMenu(menuId) {
-            const subMenu = document.getElementById(menuId);
-            subMenu.style.display = subMenu.style.display === 'block' ? 'none' : 'block';
-        }
+    <!-- Tawk.to -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6757156449e2fd8dfef573ca/1iem2n4ql';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
-
 </body>
 </html>
