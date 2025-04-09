@@ -1,0 +1,50 @@
+
+header {
+    display: flex;
+    justify-content: space-between;  /* 使標題與圖示兩端對齊 */
+    align-items: center;  /* 垂直居中對齊 */
+    padding: 10px 20px;  /* 增加內邊距以防止元素緊貼邊緣 */
+}
+
+h1 {
+    font-size: 24px;  /* 設置標題字體大小 */
+    margin: 0;  /* 去除預設的 margin */
+}
+
+.mobile-menu-icon {
+    font-size: 28px;  /* 設置漢堡選單圖示的字型大小 */
+    cursor: pointer;  /* 讓它可點擊 */
+    color: #fff;  /* 設置圖示顏色 */
+}
+.map-container {
+    display: none; /* 預設隱藏所有地圖 */
+    width: 100%;   /* 確保容器寬度填滿 */
+    height: 500px; /* 設定一個固定的高度，這樣圖片會有足夠的顯示空間 */
+    background-color: #f0f0f0; /* 背景顏色可以自定義 */
+    text-align: center; /* 讓圖片在容器內居中顯示 */
+    padding: 10px;
+}
+
+.map-container img {
+    max-width: 100%; /* 讓圖片隨容器縮放 */
+    height: auto;    /* 保持圖片比例 */
+    display: block;  /* 保證圖片正確顯示 */
+    margin: 0 auto;  /* 圖片居中 */
+}
+
+  /* 桌面版樣式 */
+body {
+    font-size: 16px;
+}
+
+/* 手機版樣式：寬度小於等於 768px 時 */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+        background-color: #f0f0f0;
+    }
+    .mobile-menu {
+        display: block;
+    }
+    /* 其他針對手機的樣式 */
+}
